@@ -5,6 +5,8 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
+var trolly1,trolly2,trolly3;
+
 function preload()
 {
 	helicopterIMG=loadImage("helicopter.png")
@@ -27,23 +29,23 @@ function setup() {
 	groundSprite=createSprite(width/2, height-35, width,10);
 	groundSprite.shapeColor=color(255)
 
-
 	engine = Engine.create();
 	world = engine.world;
 	 
 	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.5, isStatic:false});
 	World.add(world, packageBody);
-	
 
 	//Create a Ground
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
  	World.add(world, ground);
 
+	trolly1 = new trolly(500,620,20,100,{isStatic:true}); 
+	trolly2 = new trolly(300,620,20,100,{isStatic:true});
+	trolly3 = new trolly(400,630,200,20,{isStatic:true});
 
 	Engine.run(engine);
   
 }
-
 
 function draw() {
   rectMode(CENTER);
@@ -55,6 +57,11 @@ function draw() {
 		restitution: 1
 	}
   } 
-  drawSprites();
+
   
+  trolly1.display();
+  trolly2.display();
+  trolly3.display();
+
+  drawSprites();
 }
